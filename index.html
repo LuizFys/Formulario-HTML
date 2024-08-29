@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Validação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .message.success {
+            background-color: #4CAF50;
+        }
+        .message.error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário de Validação</h1>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="campoA">Campo A:</label>
+                <input type="number" id="campoA" name="campoA" required>
+            </div>
+            <div class="form-group">
+                <label for="campoB">Campo B:</label>
+                <input type="number" id="campoB" name="campoB" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submeter</button>
+            </div>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            
+            // Obtém os valores dos campos
+            const campoA = parseFloat(document.getElementById('campoA').value);
+            const campoB = parseFloat(document.getElementById('campoB').value);
+            
+            // Valida a condição
+            const messageElement = document.getElementById('message');
+            if (campoB > campoA) {
+                messageElement.textContent = 'Formulário válido!';
+                messageElement.className = 'message success';
+            } else {
+                messageElement.textContent = 'Formulário inválido! Campo B deve ser maior que Campo A.';
+                messageElement.className = 'message error';
+            }
+        });
+    </script>
+</body>
+</html>
